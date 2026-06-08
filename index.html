@@ -75,6 +75,21 @@
                 <div class="border border-zinc-800 px-3 py-1 text-[10px] tracking-[0.25em] text-zinc-500 uppercase rounded-sm mb-4 bg-zinc-950/80 font-mono">
                     Sovereign Node // 2050
                 </div>
+
+                <!-- CONTENEDOR DEL LOGO SVG (Reemplaza la URL en el 'src' por tu enlace) -->
+                <div class="mb-5 flex items-center justify-center">
+                    <img 
+                        src="TU_LINK_DEL_LOGO_SVG_AQUI" 
+                        onerror="this.style.display='none'; document.getElementById('fallback-logo').classList.remove('hidden');" 
+                        class="h-16 w-auto object-contain transition-all duration-300" 
+                        alt="2050 Futures Lab Logo"
+                    >
+                    <!-- Fallback Logo animado (se muestra si la URL anterior falla o está vacía) -->
+                    <div id="fallback-logo" class="hidden flex items-center justify-center w-14 h-14 rounded-xl border border-amber-500/20 bg-amber-500/5 text-amber-500">
+                        <i class="fa-solid fa-atom text-2xl animate-spin" style="animation-duration: 10s;"></i>
+                    </div>
+                </div>
+
                 <h1 class="text-2xl font-semibold tracking-[0.15em] text-zinc-100 uppercase">
                     2050 Futures Lab
                 </h1>
@@ -555,79 +570,57 @@
             const deliverablesContainer = document.getElementById('deliverables-container');
             deliverablesContainer.innerHTML = '';
             
-            data.deliverables.forEach((item, index) => {
-                const delivHtml = `
-                    <div class="group bg-zinc-950/80 border border-zinc-900 hover:border-amber-500/30 rounded-lg p-5 transition-all duration-300 flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
-                        <div class="max-w-xl">
-                            <div class="flex items-center space-x-2.5 mb-1.5">
-                                <span class="text-[9px] font-mono tracking-wider bg-zinc-900 border border-zinc-800 text-amber-500/80 px-2 py-0.5 rounded uppercase font-bold">${item.type}</span>
-                                <span class="text-[10px] text-zinc-500 font-mono">${item.date}</span>
-                            </div>
-                            <h4 class="text-sm font-semibold text-zinc-200 group-hover:text-amber-500/90 transition-colors">${item.title}</h4>
-                            <p class="text-xs text-zinc-400 mt-1 leading-relaxed font-light">${item.desc}</p>
+            data.deliverables.forEach(item => {
+                deliverablesContainer.innerHTML += `
+                    <div class="p-4 bg-zinc-950/50 border border-zinc-900 rounded-lg hover:border-amber-500/30 transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+                            <h4 class="text-sm font-semibold text-zinc-200">${item.title}</h4>
+                            <span class="text-[9px] font-mono bg-zinc-900 px-2 py-0.5 rounded text-amber-500/80 border border-zinc-800">${item.type}</span>
                         </div>
-                        <div class="flex items-center space-x-3 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 pt-3 md:pt-0 border-zinc-900/60">
-                            <span class="text-[10px] text-zinc-500 font-mono">${item.fileSize}</span>
-                            <button 
-                                onclick="simulateAction('Initializing secure download: ${item.title}')" 
-                                class="bg-zinc-900 group-hover:bg-amber-500/10 border border-zinc-800 group-hover:border-amber-500/30 text-zinc-300 group-hover:text-amber-500 px-3.5 py-2 rounded-lg text-xs font-medium transition-all duration-300 flex items-center space-x-2 font-mono"
-                            >
-                                <i class="fa-solid fa-download text-xs"></i>
-                                <span>Decrypt File</span>
+                        <p class="text-xs text-zinc-500 mb-3">${item.desc}</p>
+                        <div class="flex items-center justify-between text-[10px] font-mono text-zinc-600">
+                            <span>${item.date}</span>
+                            <button onclick="simulateAction('Downloading: ${item.title}')" class="text-zinc-400 hover:text-amber-500 transition-colors flex items-center space-x-1.5">
+                                <i class="fa-solid fa-download"></i>
+                                <span>${item.fileSize}</span>
                             </button>
                         </div>
                     </div>
                 `;
-                deliverablesContainer.insertAdjacentHTML('beforeend', delivHtml);
             });
 
-            // Horizon metrics initialization
-            renderHorizonList('horizon-1-list', data.horizon1, 'border-emerald-950 text-emerald-400 bg-emerald-950/20');
-            renderHorizonList('horizon-2-list', data.horizon2, 'border-amber-950 text-amber-400 bg-amber-950/20');
-            renderHorizonList('horizon-3-list', data.horizon3, 'border-purple-950 text-purple-400 bg-purple-950/20');
+            // Populate Horizon lists
+            const populateHorizon = (elementId, list) => {
+                const el = document.getElementById(elementId);
+                el.innerHTML = '';
+                list.forEach(item => {
+                    el.innerHTML += `
+                        <li onclick="simulateAction('Analyzing signal: ${item.label}')" class="group flex items-start justify-between p-2 rounded hover:bg-zinc-900/50 cursor-pointer transition-colors border border-transparent hover:border-zinc-800/50">
+                            <span class="text-[11px] text-zinc-400 group-hover:text-zinc-200 transition-colors leading-tight pr-2">${item.label}</span>
+                            <span class="text-[8px] font-mono bg-zinc-900 px-1.5 py-0.5 rounded text-zinc-500 shrink-0 group-hover:text-amber-500/80 transition-colors">${item.severity}</span>
+                        </li>
+                    `;
+                });
+            };
+
+            populateHorizon('horizon-1-list', data.horizon1);
+            populateHorizon('horizon-2-list', data.horizon2);
+            populateHorizon('horizon-3-list', data.horizon3);
         }
 
-        // Build HTML lists inside target Foresight matrix panels
-        function renderHorizonList(elementId, items, badgeClasses) {
-            const container = document.getElementById(elementId);
-            container.innerHTML = '';
-            
-            items.forEach(item => {
-                const li = document.createElement('li');
-                li.className = "flex flex-col space-y-1 p-2.5 rounded hover:bg-zinc-900/40 border border-transparent hover:border-zinc-900/80 transition-all cursor-pointer";
-                li.onclick = () => simulateAction(`Opening micro-scenario dashboard for: "${item.label}"`);
-                li.innerHTML = `
-                    <span class="text-xs font-medium text-zinc-300">${item.label}</span>
-                    <div class="flex items-center space-x-1.5">
-                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
-                        <span class="text-[9px] font-mono uppercase tracking-wider text-zinc-500">${item.severity}</span>
-                    </div>
-                `;
-                container.appendChild(li);
-            });
-        }
-
-        // Lock session and return back to auth layer
+        // Lock session back to Gatekeeper
         function logoutVault() {
             const gatekeeper = document.getElementById('gatekeeper-screen');
             const dashboard = document.getElementById('vault-dashboard');
-
-            showNotification("Terminal session securely closed. Decryption caches purged.", "success");
-
-            dashboard.classList.add('opacity-0');
             
+            showNotification("Terminating secure session...", "danger");
+            dashboard.classList.add('opacity-0');
             setTimeout(() => {
                 dashboard.classList.add('hidden');
-                
-                // Clear state inputs
-                document.getElementById('passcode').value = '';
-                
                 gatekeeper.classList.remove('hidden');
                 setTimeout(() => {
                     gatekeeper.classList.remove('opacity-0', 'scale-[0.98]');
-                    gatekeeper.classList.add('opacity-100', 'scale-100');
                 }, 50);
-
             }, 600);
         }
     </script>
