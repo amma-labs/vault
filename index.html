@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#09090b]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2050 Futures Lab — Intelligence Vault</title>
+    <!-- Tailwind CSS for modern responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font-Awesome for strategic, minimal iconography -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font: Inter for clean, technical, high-legibility typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Grid background design token for a technical/military vault aesthetic */
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        /* Subtle strategic glow highlighting the premium card component */
+        .amber-glow {
+            box-shadow: 0 0 50px -10px rgba(217, 119, 6, 0.15);
+        }
+        /* Security passcode validation error shake animation */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+        .shake-element {
+            animation: shake 0.4s ease-in-out;
+        }
+        /* Ultra-smooth cubic bezier transition animations */
+        .transition-all-custom {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#d4af37',
+                            amber: '#c5a880', /* Sophisticated muted bronze/gold tone */
+                            darkBg: '#09090b',
+                            cardBg: '#121214',
+                            border: '#27272a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full text-zinc-300 grid-bg overflow-x-hidden relative flex flex-col justify-between">
+
+    <!-- Ambient background glow layer -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-amber-500/5 to-transparent rounded-full filter blur-[120px] pointer-events-none"></div>
+
+    <!-- PORTAL CONTAINER 1: THE GATEKEEPER (AUTHENTICATION LAYER) -->
+    <main id="gatekeeper-screen" class="flex-grow flex flex-col items-center justify-center px-6 py-12 z-10 transition-all-custom">
+        <div class="w-full max-w-md flex flex-col items-center">
+            
+            <!-- Sovereign Branding Block -->
+            <div class="mb-8 flex flex-col items-center text-center">
+                <div class="border border-zinc-800 px-3 py-1 text-[10px] tracking-[0.25em] text-zinc-500 uppercase rounded-sm mb-4 bg-zinc-950/80 font-mono">
+                    Sovereign Node // 2050
+                </div>
+                <h1 class="text-2xl font-semibold tracking-[0.15em] text-zinc-100 uppercase">
+                    2050 Futures Lab
+                </h1>
+                <p class="text-xs tracking-[0.3em] text-amber-500/70 font-medium mt-1 uppercase">
+                    Intelligence Vault
+                </p>
+                <!-- Return link to the public website, preserving the user direction -->
+                <a href="https://2050lab.org" class="mt-4 text-[9px] text-zinc-500 hover:text-zinc-300 transition-all duration-300 tracking-[0.2em] uppercase flex items-center space-x-2 font-mono hover:translate-x-[-2px]">
+                    <i class="fa-solid fa-arrow-left-long text-[8px] text-amber-500/80"></i>
+                    <span>Return to 2050lab.org</span>
+                </a>
+            </div>
+
+            <!-- Login Card Component -->
+            <div id="login-card" class="w-full bg-brand-cardBg/90 border border-brand-border rounded-xl p-8 amber-glow backdrop-blur-md relative overflow-hidden">
+                <!-- Decorative top laser scanning line -->
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-amber-500/40 to-transparent"></div>
+                
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></div>
+                    <span class="text-xs uppercase tracking-widest text-zinc-400 font-medium">Authentication Required</span>
+                </div>
+
+                <p class="text-sm text-zinc-400 mb-8 leading-relaxed font-light">
+                    This is a restricted intelligence terminal. Please enter your strategic access credential to decrypt your custom deliverables, scenarios, and active risk monitors.
+                </p>
+
+                <!-- Single Passcode Access Form -->
+                <form id="passcode-form" onsubmit="handleAuth(event)" class="space-y-6">
+                    <div>
+                        <label for="passcode" class="block text-xs uppercase tracking-[0.2em] text-zinc-500 mb-2 font-medium">Security Credential</label>
+                        <div class="relative">
+                            <input 
+                                type="password" 
+                                id="passcode" 
+                                placeholder="• • • • • • • • • • • •" 
+                                class="w-full bg-zinc-950/80 border border-zinc-800 focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 rounded-lg px-4 py-3.5 text-center text-zinc-100 tracking-widest focus:outline-none transition-all placeholder-zinc-700 font-mono text-sm"
+                                required
+                            >
+                            <button 
+                                type="button" 
+                                onclick="togglePasswordVisibility()" 
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-zinc-400 transition-colors"
+                                title="Show/Hide"
+                            >
+                                <i id="eye-icon" class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Visual error indicator (initially hidden) -->
+                    <div id="error-message" class="hidden items-center space-x-2 text-red-400 text-xs bg-red-950/20 border border-red-900/30 px-3 py-2.5 rounded-lg">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>Credential not registered in our sovereign protocol. Please try again.</span>
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        class="w-full bg-zinc-100 hover:bg-zinc-200 text-zinc-950 font-medium text-xs uppercase tracking-[0.2em] py-4 rounded-lg transition-all duration-300 hover:tracking-[0.25em] flex items-center justify-center space-x-2 shadow-lg shadow-black/40"
+                    >
+                        <span>Access Vault Node</span>
+                        <i class="fa-solid fa-arrow-right-to-bracket text-xs"></i>
+                    </button>
+                </form>
+
+                <!-- Seamless demo shortcuts for evaluation -->
+                <div class="mt-8 pt-6 border-t border-zinc-900/80 text-center">
+                    <p class="text-[10px] text-zinc-600 uppercase tracking-widest">Demo Codes for testing:</p>
+                    <div class="flex justify-center space-x-3 mt-2">
+                        <code onclick="injectCode('2050-ALPHA')" class="text-[10px] bg-zinc-950 px-2 py-1 rounded border border-zinc-800 text-amber-500/60 hover:text-amber-500 hover:border-amber-500/30 transition-colors cursor-pointer font-mono">2050-ALPHA</code>
+                        <code onclick="injectCode('2050-BETA')" class="text-[10px] bg-zinc-950 px-2 py-1 rounded border border-zinc-800 text-amber-500/60 hover:text-amber-500 hover:border-amber-500/30 transition-colors cursor-pointer font-mono">2050-BETA</code>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Legal Compliance & IP Disclaimer -->
+            <p class="text-[10px] text-zinc-600 tracking-[0.15em] uppercase text-center mt-8 leading-loose px-4">
+                Sovereignty & Anticipation Strategic Hub. <br>Access automatically audited via IP protocol and cryptographic keys.
+            </p>
+        </div>
+    </main>
+
+    <!-- PORTAL CONTAINER 2: THE SECURE DASHBOARD LAYER (INITIALLY HIDDEN) -->
+    <main id="vault-dashboard" class="hidden flex-grow flex-col w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 z-10 opacity-0 transition-all-custom">
+        
+        <!-- Dashboard Navigation Header -->
+        <header class="flex flex-col md:flex-row md:items-center md:justify-between pb-6 mb-8 border-b border-zinc-800/80">
+            <div class="mb-4 md:mb-0">
+                <div class="flex items-center space-x-2 text-xs text-zinc-500 uppercase tracking-widest font-mono mb-1">
+                    <span>2050LAB.ORG</span>
+                    <span>/</span>
+                    <span class="text-amber-500/80 font-semibold">INTELLIGENCE VAULT</span>
+                    <span>/</span>
+                    <span id="client-badge-breadcrumb">PORTAL-X</span>
+                </div>
+                <h2 id="client-title" class="text-2xl font-bold tracking-tight text-zinc-100 uppercase">
+                    Sovereign Portal: Client Alpha
+                </h2>
+                <p class="text-xs text-zinc-400 mt-1 flex items-center">
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-2"></span>
+                    Encrypted tunnel established // Live intelligence stream updated by foresight team
+                </p>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="hidden sm:flex flex-col text-right font-mono text-[10px] text-zinc-500 border-r border-zinc-800 pr-4 mr-1">
+                    <span>SECURITY STATUS: SECURE</span>
+                    <span>IP PROTOCOL: LOGGED</span>
+                </div>
+                <!-- Lock session button -->
+                <button 
+                    onclick="logoutVault()" 
+                    class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-200 text-xs uppercase tracking-wider px-4 py-2.5 rounded-lg transition-all flex items-center space-x-2"
+                >
+                    <i class="fa-solid fa-lock text-xs text-amber-500"></i>
+                    <span>Lock Vault</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Workspace Columns -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Grid: Operational Scope & Urgent Flash Alerts -->
+            <div class="space-y-8 lg:col-span-1">
+                
+                <!-- Project Parameters Metadata Block -->
+                <section class="bg-brand-cardBg/60 border border-brand-border rounded-xl p-6 backdrop-blur-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-amber-500/5 to-transparent rounded-bl-full pointer-events-none"></div>
+                    
+                    <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-4 border-b border-zinc-800/60 pb-2 font-mono">Project Scope</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-[10px] uppercase text-zinc-500 block font-mono">Lab Codename:</span>
+                            <span id="project-codename" class="text-sm font-semibold text-zinc-200 font-mono">PROJECT-ALPHA-2050</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase text-zinc-500 block font-mono">Target Horizon:</span>
+                            <span id="project-horizon" class="text-sm font-medium text-amber-500/90">2030 - 2050</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase text-zinc-500 block font-mono">Lead Strategic Partner:</span>
+                            <span class="text-sm font-medium text-zinc-200">2050 Futures Lab Core</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase text-zinc-500 block font-mono">Last Co-design Session:</span>
+                            <span id="project-last-meeting" class="text-xs bg-zinc-950 border border-zinc-800/80 px-2 py-1 rounded inline-block text-zinc-400 mt-1">Jan 2026, Closed Executive Advisory</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contingency Risk Flash Alerts -->
+                <section class="bg-[#181111]/80 border border-red-900/30 rounded-xl p-6 relative overflow-hidden">
+                    <div class="absolute -top-12 -right-12 w-32 h-32 bg-red-500/5 rounded-full blur-xl pointer-events-none"></div>
+                    
+                    <div class="flex items-center space-x-2 text-red-400 mb-4">
+                        <i class="fa-solid fa-triangle-exclamation animate-pulse"></i>
+                        <h3 class="text-xs font-bold uppercase tracking-[0.2em] font-mono">Active Flash Alerts</h3>
+                    </div>
+
+                    <p id="alert-text" class="text-xs text-zinc-400 leading-relaxed mb-4">
+                        High-volatility weak signals have crossed critical systemic thresholds in your sector. The Lab suggests immediate review of the updated Q3 Macro Transition Matrix.
+                    </p>
+
+                    <button onclick="simulateAction('Downloading strategic intelligence brief...')" class="w-full bg-red-950/40 hover:bg-red-950/70 border border-red-900/50 text-red-300 font-mono text-[10px] uppercase tracking-widest py-2.5 rounded transition-all">
+                        Read Tactical Intel Note (PDF)
+                    </button>
+                </section>
+
+                <!-- Private Advisory Board Hotline -->
+                <section class="bg-brand-cardBg/40 border border-brand-border rounded-xl p-6">
+                    <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-3 font-mono">Direct Executive Advisory</h3>
+                    <p class="text-xs text-zinc-400 leading-relaxed mb-4 font-light">
+                        Does your board require rapid impact analysis regarding an unforeseen wildcard? Connect directly to our priority advisory team.
+                    </p>
+                    <a href="mailto:directorio@2050lab.org" class="inline-flex items-center space-x-2 text-xs text-amber-500/90 hover:text-amber-500 font-medium transition-colors">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span>Request Crisis Briefing</span>
+                    </a>
+                </section>
+
+            </div>
+
+            <!-- Right / Center Grid: Customized deliverables and Interactive Horizon Scanner -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- Deliverables & Custom Reports Vault -->
+                <section class="bg-brand-cardBg/60 border border-brand-border rounded-xl p-6 backdrop-blur-sm">
+                    <div class="flex items-center justify-between mb-6 border-b border-zinc-800/60 pb-3">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fa-solid fa-layer-group text-amber-500/80"></i>
+                            <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-200 font-mono">Strategic Deliverables Vault</h3>
+                        </div>
+                        <span id="deliverables-count" class="text-[10px] bg-zinc-950 border border-zinc-800 text-zinc-400 px-2 py-0.5 rounded font-mono">3 Active Deliverables</span>
+                    </div>
+
+                    <!-- Client-specific custom deliverables rendered dynamically -->
+                    <div id="deliverables-container" class="space-y-4"></div>
+                </section>
+
+                <!-- Interactive Signal Horizon Scanner -->
+                <section class="bg-brand-cardBg/60 border border-brand-border rounded-xl p-6 backdrop-blur-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 border-b border-zinc-800/60 pb-3">
+                        <div class="flex items-center space-x-2.5 mb-2 sm:mb-0">
+                            <i class="fa-solid fa-bullseye text-amber-500/80"></i>
+                            <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-200 font-mono">Dynamic Horizon & Signals Radar</h3>
+                        </div>
+                        <span class="text-[10px] text-zinc-500 font-mono">Foresight Matrix</span>
+                    </div>
+
+                    <p class="text-xs text-zinc-400 leading-relaxed mb-6 font-light">
+                        Click on any active weak signal identified across our scanning grids to evaluate direct operational consequences, transitions, and mitigation tactics.
+                    </p>
+
+                    <!-- Triple Horizon Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        
+                        <!-- Horizon 1 (Near Term: 1-3 years) -->
+                        <div class="bg-zinc-950/80 border border-zinc-900 rounded-lg p-4 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] font-mono tracking-widest text-emerald-500 uppercase font-bold">Horizon 1: Near Term</span>
+                                <h4 class="text-xs font-bold text-zinc-300 mt-1 mb-3">Direct Transitions</h4>
+                                <ul class="space-y-2" id="horizon-1-list"></ul>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-zinc-900/40 text-[9px] text-zinc-500 font-mono">
+                                Imminent maturation
+                            </div>
+                        </div>
+
+                        <!-- Horizon 2 (Mid Term: 3-7 years) -->
+                        <div class="bg-zinc-950/80 border border-zinc-900 rounded-lg p-4 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] font-mono tracking-widest text-amber-500/80 uppercase font-bold">Horizon 2: Mid Term</span>
+                                <h4 class="text-xs font-bold text-zinc-300 mt-1 mb-3">Friction & Scaling</h4>
+                                <ul class="space-y-2" id="horizon-2-list"></ul>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-zinc-900/40 text-[9px] text-zinc-500 font-mono">
+                                Active mitigation framework
+                            </div>
+                        </div>
+
+                        <!-- Horizon 3 (Long Term: 7-20+ years) -->
+                        <div class="bg-zinc-950/80 border border-zinc-900 rounded-lg p-4 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] font-mono tracking-widest text-purple-400/80 uppercase font-bold">Horizon 3: Long Term</span>
+                                <h4 class="text-xs font-bold text-zinc-300 mt-1 mb-3">Structural Shifts / Wildcards</h4>
+                                <ul class="space-y-2" id="horizon-3-list"></ul>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-zinc-900/40 text-[9px] text-zinc-500 font-mono">
+                                Speculative, systemic impact
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Global Corporate Footer -->
+    <footer class="w-full border-t border-zinc-900/60 bg-zinc-950/85 backdrop-blur-md py-6 text-center z-10">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 text-xs text-zinc-600 font-mono">
+            <div>
+                © 2026 2050 FUTURES LAB. ALL RIGHTS RESERVED.
+            </div>
+            <div class="flex space-x-6">
+                <a href="https://2050lab.org" class="hover:text-zinc-400 transition-colors">Public Website</a>
+                <span>|</span>
+                <span class="text-zinc-700">Terminal Version v2.4-Sovereign</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- In-App Notification Toast Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 pointer-events-none space-y-3"></div>
+
+    <script>
+        // High-Intelligence Client Datastore
+        const CLIENTS_DATABASE = {
+            "2050-ALPHA": {
+                title: "Sovereign Portal: Horizon BioTech & AI Corp",
+                breadcrumb: "CLIENT-ALPHA",
+                codename: "NEXUS-BIO-2050",
+                horizon: "2028 - 2045",
+                lastMeeting: "Jan 2026, Executive Advisory Board - Santiago",
+                alert: "Acceleration of biological intellectual property regulations detected in the EU for Q4. Direct impact on Scenario 2 deployment.",
+                deliverables: [
+                    {
+                        title: "Bio-Tech & Food Systems Transition Map",
+                        desc: "Comprehensive scenario modeling of molecular synthesis and agricultural supply chains across the Southern Cone.",
+                        type: "Scenario Report (PDF)",
+                        date: "Updated Dec 2025",
+                        fileSize: "18.4 MB"
+                    },
+                    {
+                        title: "Automated Clinical Lab Mitigation Framework",
+                        desc: "Strategic roadmap for scientific labor upskilling and implementation of generative AI in protein synthesis.",
+                        type: "Interactive Framework",
+                        date: "Updated Jan 2026",
+                        fileSize: "8.1 MB"
+                    },
+                    {
+                        title: "Biotech Regulation & Latin American Bioethics Monitor",
+                        desc: "Predictive regulatory tracking of gene editing restrictions applied to regional agriculture.",
+                        type: "Regulatory Radar",
+                        date: "Live Tracking",
+                        fileSize: "Dynamic"
+                    }
+                ],
+                horizon1: [
+                    { label: "AI saturation in diagnostics", severity: "High Impact" },
+                    { label: "Molecular ingredient tariffs", severity: "Medium Impact" }
+                ],
+                horizon2: [
+                    { label: "Bio-Hardware patent crisis", severity: "Critical Risk" },
+                    { label: "Commercial synthetic cell meats", severity: "Opportunity" }
+                ],
+                horizon3: [
+                    { label: "Genetic sovereignty protocols", severity: "Systemic Shift" },
+                    { label: "Commercial biological computing", severity: "Extreme Wildcard" }
+                ]
+            },
+            "2050-BETA": {
+                title: "Sovereign Portal: Southern Energy & Climate Consortium",
+                breadcrumb: "CLIENT-BETA",
+                codename: "CLIMATE-FORCE-2050",
+                horizon: "2030 - 2055",
+                lastMeeting: "Nov 2025, Foresight Vision Workshop - Patagonia",
+                alert: "Volatility in direct air capture (DAC) scaling forces re-evaluation of the projected 2035 carbon neutrality timeline.",
+                deliverables: [
+                    {
+                        title: "Energy Transition Horizon: Green Hydrogen in Patagonia",
+                        desc: "Geopolitical and climate feasibility analysis for scaling exports toward the Asia-Pacific basin.",
+                        type: "Geopolitical Study",
+                        date: "November 2025",
+                        fileSize: "24.5 MB"
+                    },
+                    {
+                        title: "Critical Infrastructure Resilience Matrix under Extreme Weather",
+                        desc: "Predictive system failure model mapping thermal and water stress on South American transmission nodes.",
+                        type: "Dynamic Risk Matrix",
+                        date: "Updated Jan 2026",
+                        fileSize: "12.7 MB"
+                    }
+                ],
+                horizon1: [
+                    { label: "Record green hydrogen electrolysis cost", severity: "High Factor" },
+                    { label: "Carbon bond policy frameworks", severity: "Immediate Policy" }
+                ],
+                horizon2: [
+                    { label: "Severe technical labor bottlenecks", severity: "Severe Bottleneck" },
+                    { label: "Private micro-nuclear grids", severity: "Strategic Wildcard" }
+                ],
+                horizon3: [
+                    { label: "Carbon market offset model decay", severity: "Critical Shift" },
+                    { label: "Continental unified grid infrastructure", severity: "Systemic Opportunity" }
+                ]
+            }
+        };
+
+        // Utility to quickly select demo codes
+        function injectCode(code) {
+            document.getElementById('passcode').value = code;
+        }
+
+        // Toggle visibility indicator for password field
+        function togglePasswordVisibility() {
+            const passcodeField = document.getElementById('passcode');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (passcodeField.type === 'password') {
+                passcodeField.type = 'text';
+                eyeIcon.classList.remove('fa-regular', 'fa-eye');
+                eyeIcon.classList.add('fa-solid', 'fa-eye-slash');
+            } else {
+                passcodeField.type = 'password';
+                eyeIcon.classList.remove('fa-solid', 'fa-eye-slash');
+                eyeIcon.classList.add('fa-regular', 'fa-eye');
+            }
+        }
+
+        // Clean notification toaster for micro-interactions
+        function showNotification(message, type = "success") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `p-4 rounded-lg border text-xs font-mono flex items-center justify-between space-x-4 shadow-xl transition-all duration-500 ease-out transform translate-y-2 opacity-0 pointer-events-auto max-w-sm ${
+                type === 'success' 
+                ? 'bg-zinc-950 border-amber-500/30 text-amber-500' 
+                : 'bg-zinc-950 border-red-900/40 text-red-400'
+            }`;
+            
+            toast.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <i class="${type === 'success' ? 'fa-solid fa-circle-check' : 'fa-solid fa-triangle-exclamation'}"></i>
+                    <span>${message}</span>
+                </div>
+                <button class="text-zinc-600 hover:text-zinc-400" onclick="this.parentElement.remove()">&times;</button>
+            `;
+            
+            container.appendChild(toast);
+            
+            // Trigger browser paint for transitions
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+            
+            // Automatically clear out of view
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-[-8px]');
+                setTimeout(() => { toast.remove(); }, 500);
+            }, 4500);
+        }
+
+        // Sandbox action listener
+        function simulateAction(actionName) {
+            showNotification(actionName, "success");
+        }
+
+        // Handle secure login authentication
+        function handleAuth(event) {
+            event.preventDefault();
+            const passcode = document.getElementById('passcode').value.trim();
+            const gatekeeper = document.getElementById('gatekeeper-screen');
+            const dashboard = document.getElementById('vault-dashboard');
+            const loginCard = document.getElementById('login-card');
+            const errorMessage = document.getElementById('error-message');
+
+            if (CLIENTS_DATABASE[passcode]) {
+                const clientData = CLIENTS_DATABASE[passcode];
+                errorMessage.classList.add('hidden');
+                
+                showNotification("Sovereign key approved. Decrypting intelligence workspace...", "success");
+
+                // Outward transition for Gatekeeper
+                gatekeeper.classList.add('opacity-0', 'scale-[0.98]');
+                
+                setTimeout(() => {
+                    gatekeeper.classList.add('hidden');
+                    
+                    // Populate UI with database values
+                    renderDashboard(clientData);
+                    
+                    // Showcase Dashboard
+                    dashboard.classList.remove('hidden');
+                    setTimeout(() => {
+                        dashboard.classList.remove('opacity-0');
+                        dashboard.classList.add('opacity-100');
+                    }, 50);
+
+                }, 600);
+
+            } else {
+                // Reject Animation Shake Action
+                loginCard.classList.add('shake-element', 'border-red-900/50');
+                errorMessage.classList.remove('hidden');
+                errorMessage.classList.add('flex');
+                
+                showNotification("Invalid cryptographic credentials.", "danger");
+
+                setTimeout(() => {
+                    loginCard.classList.remove('shake-element');
+                }, 400);
+            }
+        }
+
+        // Dynamic dashboard content processor
+        function renderDashboard(data) {
+            document.getElementById('client-badge-breadcrumb').innerText = data.breadcrumb;
+            document.getElementById('client-title').innerText = data.title;
+            document.getElementById('project-codename').innerText = data.codename;
+            document.getElementById('project-horizon').innerText = data.horizon;
+            document.getElementById('project-last-meeting').innerText = data.lastMeeting;
+            document.getElementById('alert-text').innerText = data.alert;
+            document.getElementById('deliverables-count').innerText = `${data.deliverables.length} Active Deliverables`;
+
+            // Clear & build custom deliverables HTML list
+            const deliverablesContainer = document.getElementById('deliverables-container');
+            deliverablesContainer.innerHTML = '';
+            
+            data.deliverables.forEach((item, index) => {
+                const delivHtml = `
+                    <div class="group bg-zinc-950/80 border border-zinc-900 hover:border-amber-500/30 rounded-lg p-5 transition-all duration-300 flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
+                        <div class="max-w-xl">
+                            <div class="flex items-center space-x-2.5 mb-1.5">
+                                <span class="text-[9px] font-mono tracking-wider bg-zinc-900 border border-zinc-800 text-amber-500/80 px-2 py-0.5 rounded uppercase font-bold">${item.type}</span>
+                                <span class="text-[10px] text-zinc-500 font-mono">${item.date}</span>
+                            </div>
+                            <h4 class="text-sm font-semibold text-zinc-200 group-hover:text-amber-500/90 transition-colors">${item.title}</h4>
+                            <p class="text-xs text-zinc-400 mt-1 leading-relaxed font-light">${item.desc}</p>
+                        </div>
+                        <div class="flex items-center space-x-3 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 pt-3 md:pt-0 border-zinc-900/60">
+                            <span class="text-[10px] text-zinc-500 font-mono">${item.fileSize}</span>
+                            <button 
+                                onclick="simulateAction('Initializing secure download: ${item.title}')" 
+                                class="bg-zinc-900 group-hover:bg-amber-500/10 border border-zinc-800 group-hover:border-amber-500/30 text-zinc-300 group-hover:text-amber-500 px-3.5 py-2 rounded-lg text-xs font-medium transition-all duration-300 flex items-center space-x-2 font-mono"
+                            >
+                                <i class="fa-solid fa-download text-xs"></i>
+                                <span>Decrypt File</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                deliverablesContainer.insertAdjacentHTML('beforeend', delivHtml);
+            });
+
+            // Horizon metrics initialization
+            renderHorizonList('horizon-1-list', data.horizon1, 'border-emerald-950 text-emerald-400 bg-emerald-950/20');
+            renderHorizonList('horizon-2-list', data.horizon2, 'border-amber-950 text-amber-400 bg-amber-950/20');
+            renderHorizonList('horizon-3-list', data.horizon3, 'border-purple-950 text-purple-400 bg-purple-950/20');
+        }
+
+        // Build HTML lists inside target Foresight matrix panels
+        function renderHorizonList(elementId, items, badgeClasses) {
+            const container = document.getElementById(elementId);
+            container.innerHTML = '';
+            
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.className = "flex flex-col space-y-1 p-2.5 rounded hover:bg-zinc-900/40 border border-transparent hover:border-zinc-900/80 transition-all cursor-pointer";
+                li.onclick = () => simulateAction(`Opening micro-scenario dashboard for: "${item.label}"`);
+                li.innerHTML = `
+                    <span class="text-xs font-medium text-zinc-300">${item.label}</span>
+                    <div class="flex items-center space-x-1.5">
+                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+                        <span class="text-[9px] font-mono uppercase tracking-wider text-zinc-500">${item.severity}</span>
+                    </div>
+                `;
+                container.appendChild(li);
+            });
+        }
+
+        // Lock session and return back to auth layer
+        function logoutVault() {
+            const gatekeeper = document.getElementById('gatekeeper-screen');
+            const dashboard = document.getElementById('vault-dashboard');
+
+            showNotification("Terminal session securely closed. Decryption caches purged.", "success");
+
+            dashboard.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                dashboard.classList.add('hidden');
+                
+                // Clear state inputs
+                document.getElementById('passcode').value = '';
+                
+                gatekeeper.classList.remove('hidden');
+                setTimeout(() => {
+                    gatekeeper.classList.remove('opacity-0', 'scale-[0.98]');
+                    gatekeeper.classList.add('opacity-100', 'scale-100');
+                }, 50);
+
+            }, 600);
+        }
+    </script>
+</body>
+</html>
