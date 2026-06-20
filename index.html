@@ -5,20 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2050 Futures Lab — Intelligence Vault</title>
     
-    <!-- ===== FAVICON CORREGIDO (usando tu repositorio vault) ===== -->
     <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/amma-labs/vault/main/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/amma-labs/vault/main/favicon/favicon-16x16.png">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/amma-labs/vault/main/favicon/favicon.ico">
     <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/amma-labs/vault/main/favicon/apple-touch-icon.png">
     <link rel="manifest" href="https://raw.githubusercontent.com/amma-labs/vault/main/favicon/site.webmanifest">
-    <!-- Fallback por si GitHub falla -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font-Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Font: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -28,10 +23,11 @@
         .grid-bg {
             background-size: 40px 40px;
             background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
         }
-        .amber-glow { box-shadow: 0 0 50px -10px rgba(217, 119, 6, 0.15); }
+        /* Resplandor Turquesa personalizado de 2050 */
+        .brand-glow { box-shadow: 0 0 50px -10px rgba(60, 254, 207, 0.12); }
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             20%, 60% { transform: translateX(-6px); }
@@ -46,7 +42,12 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: { gold: '#d4af37', amber: '#c5a880', darkBg: '#09090b', cardBg: '#121214', border: '#27272a' }
+                        brand: { 
+                            turquoise: '#3CFECF', 
+                            darkBg: '#09090b', 
+                            cardBg: '#121214', 
+                            border: '#27272a' 
+                        }
                     }
                 }
             }
@@ -55,9 +56,8 @@
 </head>
 <body class="h-full text-zinc-300 grid-bg overflow-x-hidden relative flex flex-col justify-between">
 
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-amber-500/5 to-transparent rounded-full filter blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-[#3CFECF]/5 to-transparent rounded-full filter blur-[120px] pointer-events-none"></div>
 
-    <!-- GATEKEEPER SCREEN -->
     <main id="gatekeeper-screen" class="flex-grow flex flex-col items-center justify-center px-6 py-12 z-10 transition-all-custom">
         <div class="w-full max-w-md flex flex-col items-center">
             <div class="mb-8 flex flex-col items-center text-center">
@@ -68,21 +68,21 @@
                     <img src="https://raw.githubusercontent.com/amma-labs/vault/main/2050logoblack.svg" 
                          onerror="this.style.display='none'; document.getElementById('fallback-logo').classList.remove('hidden');" 
                          class="h-16 w-auto object-contain" alt="2050 Futures Lab Logo">
-                    <div id="fallback-logo" class="hidden flex items-center justify-center w-14 h-14 rounded-xl border border-amber-500/20 bg-amber-500/5 text-amber-500">
+                    <div id="fallback-logo" class="hidden flex items-center justify-center w-14 h-14 rounded-xl border border-brand-turquoise/20 bg-brand-turquoise/5 text-brand-turquoise">
                         <i class="fa-solid fa-atom text-2xl animate-spin" style="animation-duration: 10s;"></i>
                     </div>
                 </div>
-                <p class="text-xs tracking-[0.3em] text-amber-500/70 font-medium mt-1 uppercase">Laboratorio de Futuros</p>
-                <a href="https://2050lab.org" class="mt-4 text-[9px] text-zinc-500 hover:text-zinc-300 transition-all duration-300 tracking-[0.2em] uppercase flex items-center space-x-2 font-mono">
-                    <i class="fa-solid fa-arrow-left-long text-[8px] text-amber-500/80"></i>
+                <p class="text-xs tracking-[0.3em] text-brand-turquoise/80 font-medium mt-1 uppercase">Laboratorio de Futuros</p>
+                <a href="https://2050lab.org" class="mt-4 text-[9px] text-zinc-500 hover:text-brand-turquoise transition-all duration-300 tracking-[0.2em] uppercase flex items-center space-x-2 font-mono">
+                    <i class="fa-solid fa-arrow-left-long text-[8px] text-brand-turquoise/80"></i>
                     <span>Return to Home</span>
                 </a>
             </div>
 
-            <div id="login-card" class="w-full bg-brand-cardBg/90 border border-brand-border rounded-xl p-8 amber-glow backdrop-blur-md relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-amber-500/40 to-transparent"></div>
+            <div id="login-card" class="w-full bg-brand-cardBg/90 border border-brand-border rounded-xl p-8 brand-glow backdrop-blur-md relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#3CFECF]/30 to-transparent"></div>
                 <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></div>
+                    <div class="w-2 h-2 rounded-full bg-brand-turquoise animate-pulse"></div>
                     <span class="text-xs uppercase tracking-widest text-zinc-400 font-medium">Authentication Required</span>
                 </div>
                 <p class="text-sm text-zinc-400 mb-8 leading-relaxed font-light">
@@ -94,7 +94,7 @@
                         <label for="passcode" class="block text-xs uppercase tracking-[0.2em] text-zinc-500 mb-2 font-medium">Security Credential</label>
                         <div class="relative">
                             <input type="password" id="passcode" placeholder="• • • • • • • • • • • •" 
-                                   class="w-full bg-zinc-950/80 border border-zinc-800 focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 rounded-lg px-4 py-3.5 text-center text-zinc-100 tracking-widest focus:outline-none transition-all placeholder-zinc-700 font-mono text-sm" required>
+                                   class="w-full bg-zinc-950/80 border border-zinc-800 focus:border-brand-turquoise/40 focus:ring-1 focus:ring-brand-turquoise/40 rounded-lg px-4 py-3.5 text-center text-zinc-100 tracking-widest focus:outline-none transition-all placeholder-zinc-700 font-mono text-sm" required>
                             <button type="button" onclick="togglePasswordVisibility()" class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-zinc-400">
                                 <i id="eye-icon" class="fa-regular fa-eye"></i>
                             </button>
@@ -104,7 +104,7 @@
                         <i class="fa-solid fa-triangle-exclamation"></i>
                         <span>Credential not registered.</span>
                     </div>
-                    <button type="submit" class="w-full bg-zinc-100 hover:bg-zinc-200 text-zinc-950 font-medium text-xs uppercase tracking-[0.2em] py-4 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-black/40">
+                    <button type="submit" class="w-full bg-zinc-100 hover:bg-brand-turquoise hover:text-zinc-950 text-zinc-950 font-medium text-xs uppercase tracking-[0.2em] py-4 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-black/40">
                         <span>Access Vault Node</span>
                         <i class="fa-solid fa-arrow-right-to-bracket text-xs"></i>
                     </button>
@@ -112,8 +112,8 @@
 
                 <div class="mt-8 pt-6 border-t border-zinc-900/50 text-center">
                     <p class="text-[9px] text-zinc-500 uppercase tracking-[0.2em] mb-2 font-mono">Access Recovery Protocol</p>
-                    <a href="mailto:hola@2050lab.org?subject=Vault%20Access%20Credential%20Inquiry" class="inline-flex items-center space-x-2 mt-2 text-[10px] text-zinc-500 hover:text-zinc-300 transition-colors uppercase tracking-[0.15em] font-mono border border-zinc-800/80 hover:border-zinc-700 bg-zinc-950/50 px-3.5 py-2 rounded">
-                        <i class="fa-regular fa-envelope text-[9px] text-amber-500/70"></i>
+                    <a href="mailto:hola@2050lab.org?subject=Vault%20Access%20Credential%20Inquiry" class="inline-flex items-center space-x-2 mt-2 text-[10px] text-zinc-500 hover:text-brand-turquoise transition-colors uppercase tracking-[0.15em] font-mono border border-zinc-800/80 hover:border-zinc-700 bg-zinc-950/50 px-3.5 py-2 rounded">
+                        <i class="fa-regular fa-envelope text-[9px] text-brand-turquoise/70"></i>
                         <span>Contact Secure Desk</span>
                     </a>
                 </div>
@@ -121,12 +121,11 @@
         </div>
     </main>
 
-    <!-- DASHBOARD (se genera dinámicamente) -->
     <main id="vault-dashboard" class="hidden flex-grow flex-col w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 z-10 opacity-0 transition-all-custom">
         <div id="dashboard-content" class="w-full">
             <div class="flex items-center justify-center py-20">
                 <div class="text-center">
-                    <i class="fa-solid fa-spinner fa-spin text-3xl text-amber-500 mb-4"></i>
+                    <i class="fa-solid fa-spinner fa-spin text-3xl text-brand-turquoise mb-4"></i>
                     <p class="text-zinc-400 text-sm">Decrypting secure modules...</p>
                 </div>
             </div>
@@ -168,9 +167,9 @@
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             toast.className = `p-4 rounded-lg border text-xs font-mono flex items-center justify-between space-x-4 shadow-xl transition-all duration-500 ease-out transform translate-y-2 opacity-0 pointer-events-auto max-w-sm ${
-                type === 'success' ? 'bg-zinc-950 border-amber-500/30 text-amber-500' : 'bg-zinc-950 border-red-900/40 text-red-400'
+                type === 'success' ? 'bg-zinc-950 border-brand-turquoise/30 text-brand-turquoise' : 'bg-zinc-950 border-red-900/40 text-red-400'
             }`;
-            toast.innerHTML = `<div class="flex items-center space-x-2"><i class="${type === 'success' ? 'fa-solid fa-circle-check' : 'fa-solid fa-triangle-exclamation'}"></i><span>${message}</span></div>
+            toast.innerHTML = `<div class="flex items-center space-x-2"><i class="${type === 'success' ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-nodes'}"></i><span>${message}</span></div>
                                <button class="text-zinc-600 hover:text-zinc-400" onclick="this.parentElement.remove()">&times;</button>`;
             container.appendChild(toast);
             setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
@@ -185,7 +184,7 @@
         }
 
         // ============================================================
-        // DATOS DE CLIENTES (simulados - en producción irían a JSON externos)
+        // DATOS DE CLIENTES
         // ============================================================
         const CLIENTS_DATABASE = {
             "2050-ALPHA": {
@@ -222,16 +221,14 @@
         };
 
         async function fetchClientData(credential) {
-            // Simulamos delay de red
             await new Promise(resolve => setTimeout(resolve, 800));
-            
             if (CLIENTS_DATABASE[credential]) {
                 return { success: true, data: CLIENTS_DATABASE[credential] };
             }
             return { success: false, error: "Invalid credentials" };
         }
 
-        // RENDERIZADOR DEL DASHBOARD
+        // RENDERIZADOR DEL DASHBOARD (Con las variables actualizadas a Turquesa)
         function renderDashboard(data) {
             const container = document.getElementById('dashboard-content');
             container.innerHTML = `
@@ -240,19 +237,19 @@
                         <div class="flex items-center space-x-2 text-xs text-zinc-500 uppercase tracking-widest font-mono mb-1">
                             <span>2050LAB.ORG</span>
                             <span>/</span>
-                            <span class="text-amber-500/80 font-semibold">INTELLIGENCE VAULT</span>
+                            <span class="text-brand-turquoise font-semibold">INTELLIGENCE VAULT</span>
                             <span>/</span>
                             <span>${data.breadcrumb}</span>
                         </div>
                         <h2 class="text-2xl font-bold tracking-tight text-zinc-100 uppercase">${data.title}</h2>
                         <p class="text-xs text-zinc-400 mt-1 flex items-center">
-                            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-2"></span>
+                            <span class="inline-block w-2 h-2 rounded-full bg-brand-turquoise animate-pulse mr-2"></span>
                             Encrypted tunnel established // Live intelligence stream
                         </p>
                     </div>
                     <div class="flex items-center space-x-3">
                         <button onclick="logoutVault()" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-200 text-xs uppercase tracking-wider px-4 py-2.5 rounded-lg transition-all flex items-center space-x-2">
-                            <i class="fa-solid fa-lock text-xs text-amber-500"></i>
+                            <i class="fa-solid fa-lock text-xs text-brand-turquoise"></i>
                             <span>Lock Vault</span>
                         </button>
                     </div>
@@ -264,7 +261,7 @@
                             <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-4 border-b border-zinc-800/60 pb-2 font-mono">Project Scope</h3>
                             <div class="space-y-4">
                                 <div><span class="text-[10px] uppercase text-zinc-500 block font-mono">Lab Codename:</span><span class="text-sm font-semibold text-zinc-200 font-mono">${data.codename}</span></div>
-                                <div><span class="text-[10px] uppercase text-zinc-500 block font-mono">Target Horizon:</span><span class="text-sm font-medium text-amber-500/90">${data.horizon}</span></div>
+                                <div><span class="text-[10px] uppercase text-zinc-500 block font-mono">Target Horizon:</span><span class="text-sm font-medium text-brand-turquoise">${data.horizon}</span></div>
                                 <div><span class="text-[10px] uppercase text-zinc-500 block font-mono">Lead Strategic Partner:</span><span class="text-sm font-medium text-zinc-200">2050 Futures Lab Core</span></div>
                                 <div><span class="text-[10px] uppercase text-zinc-500 block font-mono">Last Co-design Session:</span><span class="text-xs bg-zinc-950 border border-zinc-800/80 px-2 py-1 rounded inline-block text-zinc-400 mt-1">${data.lastMeeting}</span></div>
                             </div>
@@ -282,26 +279,26 @@
                         <section class="bg-brand-cardBg/40 border border-brand-border rounded-xl p-6">
                             <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-3 font-mono">Direct Executive Advisory</h3>
                             <p class="text-xs text-zinc-400 leading-relaxed mb-4 font-light">Connect directly to our priority advisory team.</p>
-                            <a href="mailto:directorio@2050lab.org" class="inline-flex items-center space-x-2 text-xs text-amber-500/90 hover:text-amber-500"><i class="fa-regular fa-envelope"></i><span>Request Crisis Briefing</span></a>
+                            <a href="mailto:directorio@2050lab.org" class="inline-flex items-center space-x-2 text-xs text-brand-turquoise hover:underline"><i class="fa-regular fa-envelope"></i><span>Request Crisis Briefing</span></a>
                         </section>
                     </div>
 
                     <div class="lg:col-span-2 space-y-8">
                         <section class="bg-brand-cardBg/60 border border-brand-border rounded-xl p-6">
                             <div class="flex items-center justify-between mb-6 border-b border-zinc-800/60 pb-3">
-                                <div class="flex items-center space-x-2.5"><i class="fa-solid fa-layer-group text-amber-500/80"></i><h3 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-200 font-mono">Strategic Deliverables Vault</h3></div>
+                                <div class="flex items-center space-x-2.5"><i class="fa-solid fa-layer-group text-brand-turquoise/80"></i><h3 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-200 font-mono">Strategic Deliverables Vault</h3></div>
                                 <span class="text-[10px] bg-zinc-950 border border-zinc-800 text-zinc-400 px-2 py-0.5 rounded font-mono">${data.deliverables.length} Active</span>
                             </div>
                             <div class="space-y-4">${data.deliverables.map(item => `
-                                <div class="p-4 bg-zinc-950/50 border border-zinc-900 rounded-lg hover:border-amber-500/30 transition">
+                                <div class="p-4 bg-zinc-950/50 border border-zinc-900 rounded-lg hover:border-brand-turquoise/30 transition duration-300">
                                     <div class="flex justify-between items-start mb-2">
                                         <h4 class="text-sm font-semibold text-zinc-200">${item.title}</h4>
-                                        <span class="text-[9px] font-mono bg-zinc-900 px-2 py-0.5 rounded text-amber-500/80">${item.type}</span>
+                                        <span class="text-[9px] font-mono bg-zinc-900 px-2 py-0.5 rounded text-brand-turquoise">${item.type}</span>
                                     </div>
                                     <p class="text-xs text-zinc-500 mb-3">${item.desc}</p>
                                     <div class="flex justify-between text-[10px] font-mono text-zinc-600">
                                         <span>${item.date}</span>
-                                        <button onclick="simulateAction('Downloading: ${item.title}')" class="text-zinc-400 hover:text-amber-500"><i class="fa-solid fa-download"></i> ${item.fileSize}</button>
+                                        <button onclick="simulateAction('Downloading: ${item.title}')" class="text-zinc-400 hover:text-brand-turquoise transition-colors"><i class="fa-solid fa-download"></i> ${item.fileSize}</button>
                                     </div>
                                 </div>
                             `).join('')}</div>
@@ -311,19 +308,19 @@
                             <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-200 mb-4">Dynamic Horizon & Signals Radar</h3>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div class="bg-zinc-950/80 border border-zinc-900 rounded-lg p-4">
-                                    <span class="text-[9px] font-mono text-emerald-500 uppercase font-bold">Horizon 1: Near Term</span>
+                                    <span class="text-[9px] font-mono text-emerald-400 uppercase font-bold">Horizon 1: Near Term</span>
                                     <h4 class="text-xs font-bold text-zinc-300 mt-1 mb-3">Direct Transitions</h4>
-                                    <ul class="space-y-2">${data.horizon1.map(item => `<li onclick="simulateAction('Analyzing: ${item.label}')" class="flex justify-between p-2 rounded hover:bg-zinc-900/50 cursor-pointer"><span class="text-[11px]">${item.label}</span><span class="text-[8px] font-mono bg-zinc-900 px-1.5 py-0.5 rounded">${item.severity}</span></li>`).join('')}</ul>
+                                    <ul class="space-y-2">${data.horizon1.map(item => `<li onclick="simulateAction('Analyzing: ${item.label}')" class="flex flex-col justify-between p-2 rounded hover:bg-zinc-900/50 cursor-pointer gap-1"><span class="text-[11px] text-zinc-300">${item.label}</span><span class="text-[7px] max-w-max font-mono bg-zinc-900 text-emerald-400 px-1.5 py-0.5 rounded uppercase">${item.severity}</span></li>`).join('')}</ul>
                                 </div>
                                 <div class="bg-zinc-950/80 border border-zinc-900 rounded-lg p-4">
-                                    <span class="text-[9px] font-mono text-amber-500/80 uppercase font-bold">Horizon 2: Mid Term</span>
+                                    <span class="text-[9px] font-mono text-brand-turquoise uppercase font-bold">Horizon 2: Mid Term</span>
                                     <h4 class="text-xs font-bold text-zinc-300 mt-1 mb-3">Friction & Scaling</h4>
-                                    <ul class="space-y-2">${data.horizon2.map(item => `<li onclick="simulateAction('Analyzing: ${item.label}')" class="flex justify-between p-2 rounded hover:bg-zinc-900/50 cursor-pointer"><span class="text-[11px]">${item.label}</span><span class="text-[8px] font-mono bg-zinc-900 px-1.5 py-0.5 rounded">${item.severity}</span></li>`).join('')}</ul>
+                                    <ul class="space-y-2">${data.horizon2.map(item => `<li onclick="simulateAction('Analyzing: ${item.label}')" class="flex flex-col justify-between p-2 rounded hover:bg-zinc-900/50 cursor-pointer gap-1"><span class="text-[11px] text-zinc-300">${item.label}</span><span class="text-[7px] max-w-max font-mono bg-zinc-900 text-brand-turquoise px-1.5 py-0.5 rounded uppercase">${item.severity}</span></li>`).join('')}</ul>
                                 </div>
                                 <div class="bg-zinc-950/80 border border-zinc-900 rounded-lg p-4">
-                                    <span class="text-[9px] font-mono text-purple-400/80 uppercase font-bold">Horizon 3: Long Term</span>
+                                    <span class="text-[9px] font-mono text-purple-400 uppercase font-bold">Horizon 3: Long Term</span>
                                     <h4 class="text-xs font-bold text-zinc-300 mt-1 mb-3">Structural Shifts</h4>
-                                    <ul class="space-y-2">${data.horizon3.map(item => `<li onclick="simulateAction('Analyzing: ${item.label}')" class="flex justify-between p-2 rounded hover:bg-zinc-900/50 cursor-pointer"><span class="text-[11px]">${item.label}</span><span class="text-[8px] font-mono bg-zinc-900 px-1.5 py-0.5 rounded">${item.severity}</span></li>`).join('')}</ul>
+                                    <ul class="space-y-2">${data.horizon3.map(item => `<li onclick="simulateAction('Analyzing: ${item.label}')" class="flex flex-col justify-between p-2 rounded hover:bg-zinc-900/50 cursor-pointer gap-1"><span class="text-[11px] text-zinc-300">${item.label}</span><span class="text-[7px] max-w-max font-mono bg-zinc-900 text-purple-400 px-1.5 py-0.5 rounded uppercase">${item.severity}</span></li>`).join('')}</ul>
                                 </div>
                             </div>
                         </section>
